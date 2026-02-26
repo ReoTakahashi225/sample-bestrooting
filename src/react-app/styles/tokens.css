@@ -1,0 +1,47 @@
+:root {
+  /* Colors — warm palette, no purple/indigo */
+  --color-dark: #1B2D2A;
+  --color-primary: #2D6A4F;
+  --color-primary-light: #40916C;
+  --color-accent: #E76F51;
+  --color-accent-light: #F4A261;
+  --color-text: #1A1A1A;
+  --color-text-on-dark: #F0EDE6;
+  --color-bg: #F7F5F0;
+  --color-bg-alt: #EDE9E0;
+  --color-muted: #6B7B75;
+  --color-border: #D4CFC4;
+  --color-route-before: #A0A0A0;
+
+  /* Typography */
+  --font-display: 'Shippori Mincho', serif;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+  --font-ui: 'DM Sans', sans-serif;
+
+  /* Spacing (8px grid) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-15: 120px;
+
+  /* Layout */
+  --content-max: 1120px;
+  --content-narrow: 680px;
+  --content-cta: 560px;
+
+  /* Border radius — restrained */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-out;
+  --transition-med: 200ms ease-out;
+}

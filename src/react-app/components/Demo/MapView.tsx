@@ -32,16 +32,19 @@ interface MapViewProps {
 }
 
 export function MapView({ pins, result, onMapClick }: MapViewProps) {
-  const originalPositions = pins.map(p => [p.lat, p.lng] as [number, number]);
+  // Straight-line fallbacks
+  const originalStraight = result
+    ? [...pins.map(p => [p.lat, p.lng] as [number, number]), [pins[0].lat, pins[0].lng] as [number, number]]
+    : [];
 
-  const optimizedPositions = result
+  const optimizedStraight = result
     ? [...result.optimizedOrder.map(i => [pins[i].lat, pins[i].lng] as [number, number]),
        [pins[result.optimizedOrder[0]].lat, pins[result.optimizedOrder[0]].lng] as [number, number]]
     : [];
 
-  const originalRoute = result
-    ? [...originalPositions, originalPositions[0]]
-    : [];
+  // Prefer road geometries from OSRM, fall back to straight lines
+  const originalRoute = result?.originalRoad ?? originalStraight;
+  const optimizedRoute = result?.optimizedRoad ?? optimizedStraight;
 
   return (
     <MapContainer
@@ -77,9 +80,9 @@ export function MapView({ pins, result, onMapClick }: MapViewProps) {
       )}
 
       {/* Optimized route (green solid) */}
-      {result && optimizedPositions.length > 1 && (
+      {result && optimizedRoute.length > 1 && (
         <Polyline
-          positions={optimizedPositions}
+          positions={optimizedRoute}
           pathOptions={{
             color: '#2D6A4F',
             weight: 4,

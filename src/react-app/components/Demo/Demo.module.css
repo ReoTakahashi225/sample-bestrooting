@@ -265,6 +265,23 @@
   position: relative;
 }
 
+.mapNotice {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(27, 45, 42, 0.85);
+  color: var(--color-text-on-dark);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+}
+
 .mapContainer :global(.leaflet-container) {
   height: 100%;
   width: 100%;

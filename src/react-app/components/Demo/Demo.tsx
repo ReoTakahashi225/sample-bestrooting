@@ -137,6 +137,9 @@ export function Demo() {
         {/* Map */}
         <div className={styles.mapContainer}>
           <MapView pins={pins} result={result} onMapClick={handleMapClick} />
+          <div className={styles.mapNotice}>
+            デモ用に無料地図（OpenStreetMap / CARTO）を使用しています。本番環境では Google Maps 等の商用地図に対応可能です。
+          </div>
         </div>
       </div>
     </section>

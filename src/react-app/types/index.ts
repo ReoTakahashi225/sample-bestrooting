@@ -12,4 +12,8 @@ export interface RouteResult {
   optimizedTime: number;
   savingsPercent: number;
   optimizedOrder: number[];
+  /** Road geometry for the original route (if available from OSRM) */
+  originalRoad: [number, number][] | null;
+  /** Road geometry for the optimized route (if available from OSRM) */
+  optimizedRoad: [number, number][] | null;
 }

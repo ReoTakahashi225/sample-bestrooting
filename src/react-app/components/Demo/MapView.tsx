@@ -48,8 +48,8 @@ export function MapView({ pins, result, onMapClick }: MapViewProps) {
 
   return (
     <MapContainer
-      center={[35.6812, 139.7671]}
-      zoom={12}
+      center={[34.9756, 138.3827]}
+      zoom={14}
       scrollWheelZoom={true}
       style={{ height: '100%', width: '100%' }}
     >

@@ -1,20 +1,28 @@
+import type { ReactNode } from 'react';
 import styles from './Benefits.module.css';
+import { ArrivalChart } from './ArrivalChart';
 
-const BENEFITS = [
+interface Benefit {
+  headline: string;
+  description: string;
+  visual: ReactNode;
+}
+
+const BENEFITS: Benefit[] = [
   {
-    number: '±5分',
     headline: '到着時間のブレ、±5分以内に。',
     description: '時間枠指定に対応。遅延や早着によるクレームを減らし、顧客満足度を維持する。',
+    visual: <ArrivalChart />,
   },
   {
-    number: '3秒',
     headline: 'ドライバー別の配車を、3秒で。',
     description: '車両数・積載量・対応エリアを加味した自動割り振り。手作業の配車計画が不要になる。',
+    visual: <span className={styles.visualNumber}>3秒</span>,
   },
   {
-    number: '95%',
     headline: '車両の積載率、95%まで引き上げ。',
     description: '荷物サイズと車両容量を考慮し、空きスペースを最小化。車両台数の削減に直結する。',
+    visual: <span className={styles.visualNumber}>95%</span>,
   },
 ];
 
@@ -26,7 +34,7 @@ export function Benefits() {
         {BENEFITS.map((b, i) => (
           <div key={i} className={styles.item}>
             <div className={styles.visual}>
-              <span className={styles.visualNumber}>{b.number}</span>
+              {b.visual}
             </div>
             <div className={styles.text}>
               <h3 className={styles.itemHeadline}>{b.headline}</h3>

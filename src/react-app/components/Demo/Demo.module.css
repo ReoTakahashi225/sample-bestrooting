@@ -99,6 +99,10 @@
   flex-shrink: 0;
 }
 
+.pinBadgeOptimized {
+  background-color: #2D6A4F;
+}
+
 .pinCoords {
   flex: 1;
   overflow: hidden;
@@ -241,6 +245,36 @@
 
 .savingsLabel {
   font-size: 14px;
+  color: var(--color-muted);
+}
+
+.costSavings {
+  background-color: rgba(45, 106, 79, 0.15);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--space-1);
+}
+
+.costSavingsLabel {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+.costSavingsValue {
+  font-family: var(--font-ui);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary-light);
+  letter-spacing: -0.02em;
+}
+
+.costSavingsNote {
+  font-family: var(--font-ui);
+  font-size: 10px;
   color: var(--color-muted);
 }
 

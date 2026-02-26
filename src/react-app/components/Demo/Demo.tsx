@@ -33,7 +33,9 @@ export function Demo() {
       <div className={styles.demoWrapper}>
         {/* Side Panel */}
         <div className={styles.panel}>
-          <span className={styles.panelTitle}>配送先</span>
+          <span className={styles.panelTitle}>
+            {result ? '巡回順序' : '配送先'}
+          </span>
 
           {pins.length === 0 && !result && (
             <p className={styles.instruction}>
@@ -41,15 +43,30 @@ export function Demo() {
             </p>
           )}
 
-          <span className={styles.counter}>
-            {pins.length} / {maxPins}
-          </span>
+          {!result && (
+            <span className={styles.counter}>
+              {pins.length} / {maxPins}
+            </span>
+          )}
 
           {/* Pin list */}
           <div className={styles.pinList}>
-            {pins.map(pin => (
+            {(result
+              ? result.optimizedOrder.map((origIdx, visitIdx) => ({
+                  pin: pins[origIdx],
+                  badge: String(visitIdx + 1),
+                  isOptimized: true,
+                }))
+              : pins.map(pin => ({
+                  pin,
+                  badge: pin.label,
+                  isOptimized: false,
+                }))
+            ).map(({ pin, badge, isOptimized }) => (
               <div key={pin.id} className={styles.pinItem}>
-                <span className={styles.pinBadge}>{pin.label}</span>
+                <span className={`${styles.pinBadge} ${isOptimized ? styles.pinBadgeOptimized : ''}`}>
+                  {badge}
+                </span>
                 <span className={styles.pinCoords}>
                   {pin.lat.toFixed(4)}, {pin.lng.toFixed(4)}
                 </span>
@@ -115,15 +132,22 @@ export function Demo() {
               </div>
 
               <div className={styles.resultRow}>
-                <span className={styles.resultKey}>時間</span>
-                <span className={`${styles.resultValue} ${styles.resultAfter}`}>
-                  {result.optimizedTime.toFixed(0)}分
-                </span>
-              </div>
-              <div className={styles.resultRow}>
-                <span className={styles.resultKey}>短縮</span>
+                <span className={styles.resultKey}>時間短縮</span>
                 <span className={styles.resultValue} style={{ color: 'var(--color-accent)' }}>
                   {(result.originalTime - result.optimizedTime).toFixed(0)}分
+                </span>
+              </div>
+
+              {/* Monthly cost savings estimate */}
+              <div className={styles.costSavings}>
+                <span className={styles.costSavingsLabel}>月間削減コスト（税別）</span>
+                <span className={styles.costSavingsValue}>
+                  ¥{Math.round(
+                    (result.originalDistance - result.optimizedDistance) * 20 * 15
+                  ).toLocaleString()}
+                </span>
+                <span className={styles.costSavingsNote}>
+                  ※ 月20営業日・燃料費15円/km で試算
                 </span>
               </div>
 
